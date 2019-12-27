@@ -9,10 +9,10 @@
 		<version>2.1.8.RELEASE</version>
 		<relativePath /> <!-- lookup parent from repository -->
 	</parent>
-	<groupId>com.zys</groupId>
-	<artifactId>boot_cangku</artifactId>
+	<groupId>com.sxt</groupId>
+	<artifactId>0520ERP</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>boot_cangku</name>
+	<name>0520ERP</name>
 	<description>仓库管理系统</description>
 
 	<properties>
@@ -23,9 +23,19 @@
 		<druid.version>1.1.18</druid.version>
 		<log4j.version>1.2.17</log4j.version>
 		<hutool.version>4.6.6</hutool.version>
+		<lang3.version>3.9</lang3.version>
+		<pinyin4j.version>2.5.1</pinyin4j.version>
+		<fastjosn.version>1.2.61</fastjosn.version>
 	</properties>
 
 	<dependencies>
+		<!-- fastjson -->
+		<dependency>
+			<groupId>com.alibaba</groupId>
+			<artifactId>fastjson</artifactId>
+			<version>${fastjosn.version}</version>
+		</dependency>
+
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-aop</artifactId>
@@ -107,6 +117,20 @@
 			<artifactId>hutool-all</artifactId>
 			<version>${hutool.version}</version>
 		</dependency>
+
+		<!-- commons-lang3 -->
+		<dependency>
+			<groupId>org.apache.commons</groupId>
+			<artifactId>commons-lang3</artifactId>
+		</dependency>
+
+		<!-- pinyin4j -->
+		<dependency>
+			<groupId>com.belerweb</groupId>
+			<artifactId>pinyin4j</artifactId>
+			<version>${pinyin4j.version}</version>
+		</dependency>
+
 
 	</dependencies>
 

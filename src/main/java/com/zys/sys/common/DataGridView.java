@@ -18,8 +18,8 @@ public class DataGridView {
     private Long count = 0L;
     private Object data;
 
-    public DataGridView(Integer code, Object data) {
-        this.code = code;
+    public DataGridView(Long count, Object data) {
+        this.count = count;
         this.data = data;
     }
 

@@ -25,7 +25,14 @@ public class SystemController {
      */
     @RequestMapping("toDeskManager")
     public String toDeskManager(){
-
         return "system/index/deskManager";
+    }
+
+    /*
+    跳转到 loginfo页面
+     */
+    @RequestMapping("toLogLoginManager")
+    public String toLoginfoManager(){
+        return "system/loginfo/loginfoManager";
     }
 }
