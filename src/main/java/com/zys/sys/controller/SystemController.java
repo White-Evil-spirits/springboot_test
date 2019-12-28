@@ -1,5 +1,6 @@
 package com.zys.sys.controller;
 
+import com.zys.sys.common.ResultObj;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
@@ -44,4 +45,26 @@ public class SystemController {
         return "system/notice/noticeManager";
     }
 
+    /*
+    * 人员管理总页面
+    * */
+
+    @RequestMapping("toDeptManager")
+    public String toDeptManager(){
+        return "system/dept/deptManager";
+    }
+    /*
+    * 跳转到 左侧人员管理
+    * */
+    @RequestMapping("toDeptLeft")
+    public String toDeptLeft(){
+        return "system/dept/deptLeft";
+    }
+    /*
+     * 跳转到 右侧人员管理
+     * */
+    @RequestMapping("toDeptRight")
+    public String toDeptRight(){
+        return "system/dept/deptRight";
+    }
 }

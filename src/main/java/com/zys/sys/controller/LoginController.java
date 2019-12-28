@@ -25,8 +25,6 @@ public class LoginController {
 
     @RequestMapping("login")
     public ResultObj login(String loginname, String pwd){
-        System.out.println(loginname);
-        System.out.println();
         Subject subject = SecurityUtils.getSubject();
         AuthenticationToken token = new UsernamePasswordToken(loginname,pwd);
         try{
