@@ -17,13 +17,13 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.Date;
 
 @RestController
-@RequestMapping("/login")
+@RequestMapping("login")
 public class LoginController {
 
     @Autowired
     LoginfoService loginfoService;
 
-    @RequestMapping("/login")
+    @RequestMapping("login")
     public ResultObj login(String loginname, String pwd){
         System.out.println(loginname);
         System.out.println();
@@ -35,6 +35,7 @@ public class LoginController {
             System.out.println(activerUser.toString());
             WebUtils.getSession().setAttribute("user",activerUser.getUser());
             //记录登录日志，插入登录表
+            System.out.println(WebUtils.getRequest().getRemoteAddr());
             Loginfo loginfo = new Loginfo();
             loginfo.setLoginname(activerUser.getUser().getName()+"-"+activerUser.getUser().getLoginname());
             loginfo.setLoginip(WebUtils.getRequest().getRemoteAddr());
