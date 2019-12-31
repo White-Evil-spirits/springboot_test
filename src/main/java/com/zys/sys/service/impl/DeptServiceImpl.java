@@ -31,8 +31,5 @@ public class DeptServiceImpl extends ServiceImpl<DeptMapper, Dept> implements De
         return super.removeById(id);
     }
 
-    @Override
-    public Dept getOne(Wrapper<Dept> queryWrapper) {
-        return super.getOne(queryWrapper);
-    }
+
 }
