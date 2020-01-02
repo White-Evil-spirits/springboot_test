@@ -31,5 +31,15 @@ public class DeptServiceImpl extends ServiceImpl<DeptMapper, Dept> implements De
         return super.removeById(id);
     }
 
+    @Override
+    public boolean save(Dept entity) {
+        return super.save(entity);
+    }
+
+    @Override
+    public Dept getById(Serializable id) {
+        return super.getById(id);
+    }
+
 
 }

@@ -125,7 +125,22 @@ public class DeptController {
             e.printStackTrace();
             return ResultObj.DELETE_ERROR;
         }
+    }
 
+    /*
+    * updateDept
+    * 更新
+    * */
+    @RequestMapping("updateDept")
+    public ResultObj updateDept(Dept dept){
+        try{
+            QueryWrapper<Dept> queryWrapper = new QueryWrapper<>();
+            this.deptService.updateById(dept);
+            return ResultObj.UPDATE_SUCCESS;
+        }catch (Exception e){
+            e.printStackTrace();
+            return ResultObj.UPDATE_ERROR;
+        }
     }
 
 }
