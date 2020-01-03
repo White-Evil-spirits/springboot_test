@@ -98,4 +98,28 @@ public class SystemController {
     }
 
 
+    //权限管理
+    @RequestMapping("toPermissionManager")
+    public String toPermissionManager(){
+        return "system/permission/permissionManager";
+    }
+
+    @RequestMapping("toPermissionLeft")
+    public String toPermissionLeft(){
+        return "system/permission/permissionLeft";
+    }
+
+    @RequestMapping("toPermissionRight")
+    public String toPermissionRight(){
+        return "system/permission/permissionRight";
+    }
+
+
+
+    //权限管理
+    @RequestMapping("toRoleManager")
+    public String toRoleManager(){
+        return "system/role/roleManager";
+    }
+
 }
