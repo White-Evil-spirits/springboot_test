@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zys.sys.mapper.RoleMapper">
+    <!--
+        void deletePById(Serializable id);
+
+        void deleteRById(Serializable id);
+    -->
+    <delete id="deletePById">
+        delete from sys_role_permission where rid=#{id}
+    </delete>
+
+    <delete id="deleteRById">
+        delete from sys_role_user where rid=#{id}
+    </delete>
+
+    <!-- 根据角色ID查询当前角色拥有的所有的权限或菜单ID -->
+    <select id="queryRolePermissionIdsByRid" resultType="java.lang.Integer">
+        select pid from sys_role_permission where rid=#{id}
+    </select>
+
+    <!-- 插入关系表  open="(" separator="," close=")"  -->
+    <insert id="saveRolePermission">
+        insert into sys_role_permission(rid,pid) values
+        <foreach collection="ids"  item="haha" separator=",">
+            (#{rid},#{haha})
+        </foreach>
+    </insert>
+
+</mapper>

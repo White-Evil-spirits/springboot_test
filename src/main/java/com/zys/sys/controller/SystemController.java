@@ -122,4 +122,11 @@ public class SystemController {
         return "system/role/roleManager";
     }
 
+
+    //用户管理
+    @RequestMapping("toUserManager")
+    public String toUserManager(){
+        return "system/user/userManager";
+    }
+
 }
