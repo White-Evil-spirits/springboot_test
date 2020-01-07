@@ -273,6 +273,7 @@ layui.extend({
 					url="/user/addUser";
 					//初始化排序码
 					$.get("/user/loadUserMaxOrderNum",function(res){
+						console.log(res)
 						$("#ordernum").val(res.value);
 					});
 					var html="<option value='0'>请选择直属领导</option>";

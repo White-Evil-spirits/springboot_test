@@ -31,8 +31,8 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
     }
 
     @Override
-    public User getOne(Wrapper<User> queryWrapper, boolean throwEx) {
-        return super.getOne(queryWrapper, throwEx);
+    public User getById(Serializable id) {
+        return super.getById(id);
     }
 
     @Override
@@ -40,5 +40,7 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
         return super.removeById(id);
     }
 
-
+    public Integer maxNum(){
+        return this.getBaseMapper().maxNum();
+    };
 }

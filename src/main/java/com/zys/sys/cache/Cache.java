@@ -118,6 +118,7 @@ public class Cache {
         User object = (User) joinPoint.getArgs()[0];
         Boolean res = (Boolean) joinPoint.proceed();
         if (res) {
+            log.info("已从缓存里面找到用户对象" + CACHE_USER_PROFIX + object);
             CACHE_CONTAINER.put(CACHE_USER_PROFIX + object.getId(), object);
         }
         return res;
@@ -130,6 +131,7 @@ public class Cache {
 */
     @Around(value = POINTCUT_USER_GET)
     public Object cacheUserGet(ProceedingJoinPoint joinPoint) throws Throwable {
+        System.out.println("----------------------------getbyidi切入");
         // 取出第一个参数
         Integer object = (Integer) joinPoint.getArgs()[0];
         // 从缓存里面取
