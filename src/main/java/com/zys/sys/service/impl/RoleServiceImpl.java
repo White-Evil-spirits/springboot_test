@@ -50,4 +50,9 @@ public class RoleServiceImpl extends ServiceImpl<RoleMapper, Role> implements Ro
             this.getBaseMapper().saveRolePermission(rid,list);
         }
     }
+
+    @Override
+    public List<Integer> queryUserRoleIdsByUid(Integer id) {
+        return null;
+    }
 }

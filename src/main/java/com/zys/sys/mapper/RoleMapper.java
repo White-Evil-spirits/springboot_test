@@ -25,4 +25,6 @@ public interface RoleMapper extends BaseMapper<Role> {
     List<Integer> queryRolePermissionIdsByRid(Integer roleId);
 
     void saveRolePermission(@Param("rid") Integer rid, @Param("ids") List<Integer> ids);
+
+    void deleteRandUById(Serializable id);
 }

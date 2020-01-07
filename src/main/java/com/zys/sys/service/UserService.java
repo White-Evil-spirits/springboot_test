@@ -14,4 +14,6 @@ import com.baomidou.mybatisplus.extension.service.IService;
 public interface UserService extends IService<User> {
 
     Integer maxNum();
+
+    void saveUserRole(Integer uid, Integer[] ids);
 }
