@@ -426,6 +426,7 @@
 
 		//打开分配角色的弹出层
 		function selectRole(data){
+
 			mainIndex=layer.open({
 				type:1,
 				content:$("#selectUserRoleDiv"),
@@ -438,6 +439,7 @@
 					$.each(checkStatus.data,function(index,item){
 						params+="&ids="+item.id;
 					});
+					alert(params)
 					$.post("/user/saveUserRole",params,function(res){
 						layer.msg(res.msg);
 					})

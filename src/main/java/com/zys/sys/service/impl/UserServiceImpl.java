@@ -11,6 +11,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * <p>
@@ -53,8 +55,12 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
 
     @Override
     public void saveUserRole(Integer uid, Integer[] ids) {
-
+        roleMapper.deleteRandUById(uid);
+        List<Integer> ida = new ArrayList<>();
+        for ( Integer i : ids ) {
+            ida.add(i);
+        }
+        this.getBaseMapper().saveUserRole(uid,ida);
     }
 
-    ;
 }

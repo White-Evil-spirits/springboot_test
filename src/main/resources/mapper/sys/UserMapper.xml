@@ -6,4 +6,11 @@
         SELECT MAX(ordernum) FROM sys_user
     </select>
 
+    <insert id="saveUserRole">
+        insert into sys_role_user(rid,uid) values
+        <foreach collection="ids"  item="haha" separator=",">
+            (#{haha},#{uid})
+        </foreach>
+    </insert>
+
 </mapper>

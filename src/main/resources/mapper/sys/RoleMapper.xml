@@ -32,4 +32,9 @@
         delete from sys_role_user where uid=#{id}
     </delete>
 
+    <!-- 查询当前用户拥有的角色ID集合 -->
+    <select id="queryUserRoleIdsByUid" resultType="java.lang.Integer">
+		select rid from sys_role_user where uid=#{value}
+	</select>
+
 </mapper>

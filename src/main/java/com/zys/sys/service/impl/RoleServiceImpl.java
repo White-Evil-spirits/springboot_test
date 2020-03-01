@@ -53,6 +53,6 @@ public class RoleServiceImpl extends ServiceImpl<RoleMapper, Role> implements Ro
 
     @Override
     public List<Integer> queryUserRoleIdsByUid(Integer id) {
-        return null;
+        return this.getBaseMapper().queryUserRoleIdsByUid(id);
     }
 }

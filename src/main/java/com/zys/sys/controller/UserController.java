@@ -217,7 +217,12 @@ public class UserController {
         QueryWrapper<Role> queryWrapper=new QueryWrapper<>();
         queryWrapper.eq("available", Constast.AVAILABLE_TRUE);
         List<Map<String, Object>> listMaps = this.roleService.listMaps(queryWrapper);
-
+//        for ( Map<String, Object> map : listMaps ) {
+//            for (String key : map.keySet()) {
+//                System.out.println(key + ":" + map.get(key)+"listmap--++++++++++++++++++++++++++++++++++++");
+//            }
+//            System.out.println("截断一侧输出++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++");
+//        }
         //2,查询当前用户拥有的角色ID集合
         List<Integer> currentUserRoleIds=this.roleService.queryUserRoleIdsByUid(id);
         for (Map<String, Object> map : listMaps) {
@@ -238,7 +243,7 @@ public class UserController {
      * 保存用户和角色的关系
      */
     @RequestMapping("saveUserRole")
-    public ResultObj saveUserRole(Integer uid,Integer[] ids) {
+    public ResultObj saveUserRole(@Param("uid")Integer uid, @Param("ids")Integer[] ids) {
         try {
             this.userService.saveUserRole(uid,ids);
             return ResultObj.DISPATCH_SUCCESS;

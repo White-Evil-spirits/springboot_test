@@ -2,6 +2,9 @@ package com.zys.sys.mapper;
 
 import com.zys.sys.domain.User;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
+import org.apache.ibatis.annotations.Param;
+
+import java.util.List;
 
 /**
  * <p>
@@ -14,4 +17,6 @@ import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 public interface UserMapper extends BaseMapper<User> {
 
     Integer maxNum();
+
+    void saveUserRole(Integer uid, List<Integer> ids);
 }

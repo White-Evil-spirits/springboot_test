@@ -7,16 +7,14 @@ import com.zys.sys.common.*;
 import com.zys.sys.domain.Permission;
 import com.zys.sys.domain.User;
 import com.zys.sys.service.PermissionService;
+import com.zys.sys.service.RoleService;
 import com.zys.sys.vo.PermissionVo;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 @RestController
 @RequestMapping("/menu")
@@ -26,23 +24,41 @@ public class MenuController {
 
     @Autowired
     private PermissionService permissionService;
+    @Autowired
+    private RoleService roleService;
 
     @RequestMapping("loadIndexLeftMenuJson")
-    public DataGridView loadIndexLeftMenuJson(PermissionVo permissionVo){
-
+    public DataGridView  loadIndexLeftMenuJson(PermissionVo permissionVo) {
         //查询所有菜单
-        QueryWrapper<Permission> queryWrapper = new QueryWrapper<>();
-        queryWrapper.eq("type", Constast.TYPE_MNEU);
+        QueryWrapper<Permission> queryWrapper=new QueryWrapper<>();
+        //设置只能查询菜单
+        queryWrapper.eq("type",Constast.TYPE_MNEU);
         queryWrapper.eq("available", Constast.AVAILABLE_TRUE);
-        List<Permission> list = new ArrayList<>();
-        User user = (User) WebUtils.getSession().getAttribute("user");
-        if(user.getType() == Constast.USER_TYPE_SUPER){
-            list = permissionService.list(queryWrapper);
-        }else{
-            //根据用户id  角色 权限查
-            list = permissionService.list(queryWrapper);
-        }
 
+        User user = (User) WebUtils.getSession().getAttribute("user");
+        List<Permission> list=null;
+        if(user.getType()==Constast.USER_TYPE_SUPER) {
+            list = permissionService.list(queryWrapper);
+        }else {
+            //根据用户ID+角色+权限去查询
+            Integer userId=user.getId();
+            //根据用户ID查询角色
+            List<Integer> currentUserRoleIds = roleService.queryUserRoleIdsByUid(userId);
+            //根据角色ID取到权限和菜单ID
+            Set<Integer> pids=new HashSet<>();
+            for (Integer rid : currentUserRoleIds) {
+                List<Integer> permissionIds = roleService.queryRolePermissionIdsByRid(rid);
+                pids.addAll(permissionIds);
+            }
+
+            //根据角色ID查询权限
+            if(pids.size()>0) {
+                queryWrapper.in("id", pids);
+                list=permissionService.list(queryWrapper);
+            }else {
+                list =new ArrayList<>();
+            }
+        }
         List<TreeNode> treeNodes=new ArrayList<>();
         for (Permission p : list) {
             Integer id=p.getId();
@@ -55,9 +71,7 @@ public class MenuController {
         }
         //构造层级关系
         List<TreeNode> list2 = TreeNodeBuilder.build(treeNodes, 1);
-        System.out.println(list2);
-        DataGridView dataGridView = new DataGridView(list2);
-        return dataGridView;
+        return new DataGridView(list2);
     }
 
     /****************菜单管理开始****************/
