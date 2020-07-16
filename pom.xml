@@ -12,7 +12,7 @@
 	<groupId>com.sxt</groupId>
 	<artifactId>0520ERP</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>0520ERP</name>
+	<name>ERP</name>
 	<description>仓库管理系统</description>
 
 	<properties>
